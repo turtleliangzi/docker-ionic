@@ -1,4 +1,4 @@
 # ionic
 
 cd /root/myApp
-ionic serve
+ionic serve --address localhost
