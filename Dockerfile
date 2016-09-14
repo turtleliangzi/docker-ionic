@@ -8,26 +8,21 @@ RUN \
         # apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0xcbcb082a1bb943db && \
         apt-get clean && \
         apt-get update && \
-        apt-get install curl && \
-        curl -sL https://deb.nodesource.com/setup_6.x | bash - && \
-        apt-get install -y nodejs
+        apt-get install -y curl && \
+        apt-get install -y npm && \
+        npm install -g n && \
+        n stable
 
 COPY npmrc ~/.npmrc
 
 RUN \
-        npm install -g cnpm && \        
-        cnpm install -g cordova ionic && \
-        ionic start myApp tabs && \
-        apt-get install -y supervisor
+        npm install -g cnpm --registry=https://registry.npm.taobao.org && \
+        cnpm install -g cordova ionic
 
 
-RUN mkdir -p /var/log/supervisor
+WORKDIR /root/myApp
 
-
-ADD supervisord.conf /etc/supervisord.conf
-
-
-CMD ["/usr/bin/supervisord"]
+CMD ["ionic", "serve", "--port", "8100", "--livereload-port", "35729", "--all", "--no-browser"]
 
 # Expose ports.
-EXPOSE 8100
+EXPOSE 8100 35729
