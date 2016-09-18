@@ -1,4 +1,5 @@
-# 用dockerfile搭建基于ubuntu的ionic1的开发环境镜像
+> 用dockerfile搭建基于ubuntu的ionic1的开发环境镜像
+本镜像已安装android sdk环境
 
 ## 一、下载
 ```
