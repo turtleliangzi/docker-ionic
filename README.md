@@ -1,32 +1,37 @@
-# 用dockerfile搭建基于ubuntu的lnmp及laravel开发环境镜像
+# 用dockerfile搭建基于ubuntu的ionic1的开发环境镜像
 
 ## 一、下载
 ```
-git clone https://github.com/turtleliangzi/docker-laravel.git
+git clone https://github.com/turtleliangzi/docker-ionic.git
 ```
 
 ## 二、build
 
 ```
-docker build -t 镜像名:版本号 .
+docker build -t ionic:1.0 .
+
+```
+其中ionic为镜像名，1.0为版本号
+
+## 三、往宿主机上的ionic项目路径中添加ionic项目
+
+本实例的ionic项目路径为/root/docker_project/ionic
+
+```
+git clone https://github.com/turtleliangzi/ionic1_project.git
+```
+## 四、运行
+
+```
+docker run -id -p 8100:8100 -p 35729:35729 -v /root/docker_project/ionic:/root/myApp ionic:1.0
 
 ```
 
-## 三、运行
-
-```
-docker run -id -p 80:80 -v /var/www/html:/var/www/html 镜像名:版本号
-
-```
-
-* 其中数据库root密码为空
-
-* -p 80:80 第一个80为宿主机上的80端口，第二个80为docker上的80端口
-
-* -v /var/www/html:/var/www/html 第一个/var/www/html为宿主机上的web路径，第二个为docker的web路径
+其中/root/docker_project/ionic为宿主机上的ionic项目路径，/root/myApp为docker镜像上的ionic项目路径
 
 
-## 四、添加文件
 
-在本地/var/www/html目录中添加html或php文件，然后访问localhost/文件名即可
+## 五、测试
+
+在浏览器中访问http://0.0.0.0:8100
 
