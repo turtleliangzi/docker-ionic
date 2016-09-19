@@ -56,5 +56,5 @@ ENV PATH ${PATH}:/opt/tools
 
 RUN echo ANDROID_HOME="${ANDROID_HOME}" >> /etc/environment
 
-RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-23,android-23,addon-google_apis_x86-google-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-x86-android-23 --proxy-host mirrors.neusoft.edu.cn --proxy-port 80 -s"]
+RUN ["/opt/tools/android-accept-licenses.sh", "android update sdk --all --no-ui --filter platform-tools,tools,build-tools-23.0.1,android-23,addon-google_apis_x86-google-23,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-x86-android-23 --proxy-host mirrors.neusoft.edu.cn --proxy-port 80 -s"]
 
